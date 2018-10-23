@@ -1,0 +1,144 @@
+class Mazo
+{
+
+	private $idMazo;
+	private $nombre;
+	private $listaCartas;	
+
+	function __construct($id, $iduser, $nombre, $listCart)
+	{
+		$this->idMazo 	 = $id;	
+		$this->idUsuario = $iduser
+		$this->nombre    = $nombre;
+		$this->listaCartas = $listCart;
+		
+	}
+
+
+	function getId()    { return $this->id; }
+	function getNombre(){ return $this->nombre; }
+	function getListaCartas(){ return $this->listaCartas; }
+	
+	function setId($id) { $this->id = $id; }
+	function setNombre($nombre){ $this->nombre = $nombre; }
+	function setListaCartas($listCart) { $this->listaCartas = $listCart; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+include_once "Mazo.php";
+class Mazos
+{
+
+	private $listaMazo;
+	
+	function __construct()
+	{
+		$this->listaMazo = array();	 
+	}
+
+
+	function getMazo($index){ return $this->listaMazo[$index]; }
+	function getLenght()    { return count($this->listaMazo); }
+
+
+
+	/*function setMazo($index, $mazo){ $this->listaMazo[$index]; }*/
+
+
+        function Add_Mazo($mazo){ array_push($this->listaMazo, $mazo); }
+
+	function Quitar_Mazo(){ /*Buscar como borrar mazos de array*/ }
+		
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+include_once "Mazos.php";
+include_once "ModeloCartas.php";//se usa para cargar todas las cartas que pertenecen al mazo
+include_once "Conexion.php";
+
+class ModeloMazos
+{
+
+	function Mazos_Cargar($idUser)
+	{
+		$cn = new Conexion();
+		$rows = $cn->ConsultProcedure("CALL mazos_all('".$idUser."')");
+		
+		/*
+		CREATE PROCEDURE mazos_all(iduser INT)
+		BEGIN
+			SELECT * FROM UsuarioMazo WHERE idUsuario = iduser;
+		END
+		*/
+		$listaMazos = $this->Mazos_CrearLista($rows);
+
+		return $listaMazos;
+	}
+
+	
+	function Mazos_CrearLista($rows)
+	{
+		$listaMazo = new Mazos();
+		
+		for ($i=0; $i < count($rows); $i++)
+		{
+			$idMazo    = $rows[$i]["idMazo"];
+			$idUsuario = $rows[$i]["idUsuario"];
+			$nombre    = $rows[$i]["nombre"];
+
+			
+			$modCartas = new ModeloCartas();
+			$listaCartas = $modCartas->Cartas_Mazo($idMazo);
+
+			/*
+			En este caso, a partir del idCarta que posee la tabla usuariomazo
+			va a llamar a un metodo tipo getcarta de la variable session que 
+			previamente se cargo, haciendo que no sea necesario consultar la bd
+			*/
+
+			
+			$mazo = new Mazo($idMazo, $idUsuario, $nombre, $listaCartas);
+
+			$listaMazo->Add_Mazo($mazo);
+		}
+	}
+
+
+	function Mazo_Borrar($idMazo)
+	{
+		$cn = new Conexion();
+		$cn->ConsultProcedure("CALL mazo_borrar('".$idMazo."')");	
+	}		
+}
