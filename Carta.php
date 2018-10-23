@@ -1,9 +1,4 @@
 <?php
-    //include_once "Carta_Ambiente.php";
-    //include_once "Carta_Jugable.php";
-    //include_once "Carta_Criatura.php";
-    //include_once "Carta_Hechizo.php";
-    //include_once "Carta_Poder.php";
     class Carta
     {
         private $idCarta;
