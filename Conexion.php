@@ -11,7 +11,7 @@
         {
             $this->opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
             //Objeto PDO, Controlador de BD, IP del servidor o localhost, nombre de la BD, usuario y contraseña
-            $this->objetoPDO = new PDO('mysql:host=localhost;dbname=jueguito','root','1234',$this->opciones);
+            $this->objetoPDO = new PDO('mysql:host=localhost;dbname=cartasx','root','',$this->opciones);
             $this->objetoPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch(PDOException $e)

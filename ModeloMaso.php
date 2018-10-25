@@ -27,6 +27,7 @@
             return $maso;
         }
 
+
         function CartasJugador($idUser)
         {
             echo "<script>alert('begin')</script>";
@@ -44,6 +45,13 @@
             $maso = $this->CrearMaso($rows);
             return $maso;
         }
+
+
+
+
+
+
+
 
         function CrearMaso($rows)
         {

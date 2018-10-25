@@ -18,7 +18,8 @@ html, body {
     scrollbar-track-color:#E5E5E5;
 }
 /*Form Juego________________________________________*/
-#form_game {
+#form_game
+{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -28,7 +29,8 @@ html, body {
     */
 }
 /*Div Oculta (para pruevas y almacenado de consultas) */
-#Oculta {
+#Oculta
+{
     background-color: black;
     border:solid;
     color:green;
@@ -40,15 +42,16 @@ html, body {
     left: 0px;
 }
 /*LOGIN_____________________________________________*/
-#div_login {
+#div_login
+{
     opacity:0.9;
     border-radius: 30px;
     position: absolute;
-    width: 260px;
+    width: 300px;
     height: 340px;
     background-color: white;
     top:200px;
-    left:430px;
+    left:600px;
 }
 /*
 #h_login {
@@ -258,7 +261,7 @@ Aca se guardan todas las cartas que se ven cuando seleccionas un tipo de carta
     position: absolute;
     background-color: rgb(18, 176, 214);
     width: 940px;
-    height: 550px;
+    height: 400px;
     bottom: 0px;
     border-radius: 20px;
     /*Overflow es el scroll automatico*/

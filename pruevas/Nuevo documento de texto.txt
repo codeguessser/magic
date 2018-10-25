@@ -1,0 +1,17 @@
+secion(iduser, estado, 
+	cartasEnTabla, cartasEnMano, 
+	evento, vida, mana, 
+	desAccion, turno, 
+	idAmbiente, idDado, idMoneda
+	)
+
+estado={s(standby), s(searching for figth), f(figthting)}
+
+cartasEnTabla={idJugable, idJugable, idJugable, idJugable, 
+	       idJugable, idJugable, idJugable, idJugable}
+
+cartasEnMano ={idJugable, idJugable, idJugable, idJugable, 
+	       idJugable, idJugable, idJugable, idJugable}
+
+EVENTO={terminar turno, rendirse}
+

@@ -1,14 +1,14 @@
 function AjxConsulta(urlphp,objeto,valor,accion)
 { //objeto html(incluyendo si es id o clase), sql, 2 (case 2 de Conexion.php)
-    //alert(valor);
+    //alert('hola como ase');
     var parametros;
 
-    if(urlphp == 'ControladorUsuario.php')
+    if(urlphp == 'viewUsuario.php')
     {
       parametros =
       { //<--Array de datos
           "user"  : $("#user").val(),
-          "pwd" : $("#pwd").val(),
+          "pwd"   : $("#pwd").val(),
           "email" : $("#email").val(),
           "accion": accion
       };

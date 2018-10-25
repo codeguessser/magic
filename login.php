@@ -9,7 +9,7 @@
 
         <link rel="stylesheet" type="text/css" href="/css/estilo.php" />
     </head>
-    <body background="img/login.jpg">
+    <body background="imgd/login.jpg">
         <div id="form_game">
             <div id="Oculta">
             <input class="tfd" id="tfd" type="button" href="javascript:;" onclick="closeTest()" value="X">
@@ -36,7 +36,7 @@
             </div>
 
             <div id="box_Mazos">
-                <input class="btn_tipo2" id="btn_todasCartas" type="button" href="javascript:;" onclick="AjxConsulta('ControladorMaso.php','#test1','',1);return false;" value="Todas mis cartas"/>
+                <input class="btn_tipo2" id="btn_todasCartas" type="button" href="javascript:;" onclick="AjxConsulta('viewMaso.php','#test1','',1);return false;" value="Todas mis cartas"/>
                 <input class="btn_tipo2" id="btn_misCartas" type="button" href="javascript:;" onclick="" value="Mazo de Batalla"/>
             </div>
 
@@ -49,10 +49,10 @@
             </div>
 
             <div id='box_select_tip'>
-                <input id="btnt_cri" class="btnt" type="button" href="javascript:;" onclick="AjxConsulta('ControladorMaso.php','#test1','criatura',0);return false;" value="criaturas"/>
-                <input id="btnt_hec" class="btnt" type="button" href="javascript:;" onclick="AjxConsulta('ControladorMaso.php','#test1','hechizo',0);return false;" value="hechizos"/>
-                <input id="btnt_pod" class="btnt" type="button" href="javascript:;" onclick="AjxConsulta('ControladorMaso.php','#test1','poder',0);return false;" value="poderes"/>
-                <input id="btnt_amb" class="btnt" type="button" href="javascript:;" onclick="AjxConsulta('ControladorMaso.php','#test1','ambiente',0);return false;" value="ambientes"/>
+                <input id="btnt_cri" class="btnt" type="button" href="javascript:;" onclick="AjxConsulta('viewMaso.php','#test1','criatura',0);return false;" value="criaturas"/>
+                <input id="btnt_hec" class="btnt" type="button" href="javascript:;" onclick="AjxConsulta('viewMaso.php','#test1','hechizo',0);return false;" value="hechizos"/>
+                <input id="btnt_pod" class="btnt" type="button" href="javascript:;" onclick="AjxConsulta('viewMaso.php','#test1','poder',0);return false;" value="poderes"/>
+                <input id="btnt_amb" class="btnt" type="button" href="javascript:;" onclick="AjxConsulta('viewMaso.php','#test1','ambiente',0);return false;" value="ambientes"/>
             </div>
             <div id="box_cartas">
               <div id="box_info"></div>
@@ -73,8 +73,8 @@
             <p id="p_emailr">Email</p>
             <input class="textbox" id="email" type="text">
 
-            <input id="btn_Login" type="button" href="javascript:;" onclick="AjxConsulta('ControladorUsuario.php','#resultado','',0);return false;" value="Iniciar Sesion"/>
-            <input id="btn_Registrarse" type="button" href="javascript:;" onclick="AjxConsulta('ControladorUsuario.php','#resultado','',1);return false;" value="Registrarse"/>
+            <input id="btn_Login" type="button" href="javascript:;" onclick="AjxConsulta('viewUsuario.php','#resultado','',0);return false;" value="Iniciar Sesion"/>
+            <input id="btn_Registrarse" type="button" href="javascript:;" onclick="AjxConsulta('viewUsuario.php','#resultado','',1);return false;" value="Registrarse"/>
             <p id="resultado"></p>
 
 
