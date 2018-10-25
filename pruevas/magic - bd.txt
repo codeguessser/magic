@@ -3,15 +3,56 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-10-2018 a las 13:10:38
--- Versión del servidor: 5.1.37
--- Versión de PHP: 5.3.0
+-- Tiempo de generaciï¿½n: 25-10-2018 a las 13:10:38
+-- Versiï¿½n del servidor: 5.1.37
+-- Versiï¿½n de PHP: 5.3.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 --
 -- Base de datos: `magic`
 --
+
+-- --------------------------------------------------------
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cartas_iniciales` (IN `id` INT)  BEGIN
+	INSERT INTO tienecarta VALUES(id,6);
+	INSERT INTO tienecarta VALUES(id,10);
+    INSERT INTO tienecarta VALUES(id,11);
+    INSERT INTO tienecarta VALUES(id,12);
+    INSERT INTO tienecarta VALUES(id,13);
+
+
+    INSERT INTO tienemaso VALUES(id,1,6);
+    INSERT INTO tienemaso VALUES(id,1,10);
+    INSERT INTO tienemaso VALUES(id,1,11);
+    INSERT INTO tienemaso VALUES(id,1,12);
+    INSERT INTO tienemaso VALUES(id,1,13);
+END$$
+
+--
+-- Funciones
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `user_existe` (`user` VARCHAR(20)) RETURNS INT(11) BEGIN
+	IF EXISTS( SELECT idUsuario FROM usuario WHERE userName = user ) THEN
+		return 1;
+	ELSE
+		return 0;
+    END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `user_login` (`user` VARCHAR(20), `pwd` VARCHAR(20)) RETURNS INT(11) BEGIN
+	IF EXISTS ( SELECT * FROM usuario WHERE userName = user and passwd = pwd) THEN
+		return 1;
+	ELSE
+		return 0;
+    END IF;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
