@@ -27,6 +27,7 @@
             return $maso;
         }
 
+        //Este metodo tiene problemas, buscar la forma de cargar todos los datos de las cartas que posee el user
         function CartasJugador($idUser)
         {
             echo "<script>alert('begin')</script>";
