@@ -319,7 +319,7 @@ Box info es lo que te aparece cuando te paras encima de la carta, muestra la inf
 }
 .carta.carta_ambiente
 {
-    background-color: rgb(120, 120, 120);
+    background-color: rgb(255, 255, 255);
 }
 .carta.carta_poder
 {

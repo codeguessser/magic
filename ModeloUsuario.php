@@ -13,7 +13,7 @@
             //obtengo id
             $id  = $cn->ConsultFunction("SELECT idUsuario FROM usuario where userName = '".$userName."'");
             //carga las cartas iniciales del jugador (todos los jugadores tienen las mismas)
-            $cn->ExecuteSql("call cartasx.cartas_iniciales(".$id.");");
+            $cn->ExecuteSql("call cartas_iniciales(".$id.");");
         }
 
         function Usuario_Existe($userName)

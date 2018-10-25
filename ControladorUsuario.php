@@ -1,5 +1,6 @@
 <?php
     include_once "ModeloUsuario.php";
+    session_start();
 
     $accion = $_POST['accion'];
     $userName = $_POST['user'];

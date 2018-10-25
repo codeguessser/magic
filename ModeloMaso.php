@@ -8,21 +8,18 @@
 
     class ModeloMaso
     {
-        function CargarTipo($tipo)
+        function CargarTipo($tipo, $condicionExtra)
         {
             $cn = new Conexion();
             switch ($tipo)
             {
                 case 'ambiente':
-                    $sql = "select * from cartasx.carta c, cartasx.ambiente a where c.idCarta = a.idAmbiente order by c.idCarta";
+                    $sql = "select * from carta c, ambiente a where c.idCarta = a.idAmbiente ".$condicionExtra." order by c.idCarta";
                     break;
                 case 'criatura':
                 case 'hechizo':
                 case 'poder':
-                    $sql = "select * from carta c, jugable j, ".$tipo." x where c.idCarta = j.idJugable and j.idJugable = x.id order by c.idCarta";
-                    break;
-                case '*':
-                    //$sql = "select * from cartasx.carta c, cartasx.ambiente a where c.idCarta = a.idAmbiente order by c.idCarta";
+                    $sql = "select * from carta c, jugable j, ".$tipo." x where c.idCarta = j.idJugable and j.idJugable = x.id ".$condicionExtra." order by c.idCarta";
                     break;
             }
             $rows = $cn->ConsultProcedure($sql);
@@ -30,32 +27,26 @@
             return $maso;
         }
 
-        function CargarClase($clase)
+        function CartasJugador($idUser)
         {
+            echo "<script>alert('begin')</script>";
             $cn = new Conexion();
-            switch ($clase)
+            $tipos = array('criatura','poder','hechizo');
+
+            $rows = array();
+            for ($c=0; $c < count($tipos); $c++)
             {
-                case 'luz':
-                    $sql = "";
-                    break;
-                case 'obscuridad':
-                    $sql = "";
-                    break;
-                case 'trueno':
-                    $sql = "";
-                    break;
-                case 'naturaleza':
-                    $sql = "";
-                    break;
+              $sql = "select * from carta c, jugable j, ".$tipos[$c]." x, tienecarta t where c.idCarta = j.idJugable and j.idJugable = x.id and t.idCarta = c.idCarta and t.idUsuario = ".$idUser." order by c.idCarta";
+              echo "<script>alert('".$sql."')</script>";
+              $array_merge($rows, $cn->ConsultProcedure($sql));
             }
-            $rows = $cn->ConsultProcedure($sql);
+
             $maso = $this->CrearMaso($rows);
             return $maso;
         }
 
         function CrearMaso($rows)
         {
-            //echo "<script>alert('begin')</script>";
             $maso = new Maso();
 
             for ($i=0; $i < count($rows); $i++)

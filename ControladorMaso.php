@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once "ModeloMaso.php";
     include_once "Graficos.php";
 
@@ -9,10 +10,12 @@
     switch ($accion)
     {
         case 0://carga todas las cartas de cierto tipo
-          $ctlMaso->CargarMaso($valor);
+          //el segundo parametro es para agregar nuevas condiciones a la consulta sql de cartas
+          $ctlMaso->CargarMaso($valor, "");//en este caso quiero la consulta por default
           break;
         case 1://carga todas las cartas del jugador
-          //$ctlMaso->CargarMaso($valor);
+          $idUser = $_SESSION['usuario']->getId();
+          $ctlMaso->CargarCartasJugador($idUser);
           break;
     }
 
@@ -27,17 +30,14 @@
 
         function CargarMaso($valor)
         {
-            $maso = $this->modMaso->CargarTipo($valor);
+            $maso = $this->modMaso->CargarTipo($valor, "");
             $graficos = new Graficos();
             $graficos->dibujarMaso($maso);
         }
-        /*
-        function CargarMaso($valor)
+
+        function CargarCartasJugador($idUser)
         {
-            $maso = $this->modMaso->CargarTipo($valor);
-            $graficos = new Graficos();
-            $graficos->dibujarMaso($maso);
+          $maso = $this->modMaso->CartasJugador($idUser);
         }
-        */
     }//fin clase
 ?>

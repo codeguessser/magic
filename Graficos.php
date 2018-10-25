@@ -16,22 +16,30 @@ class Graficos
       //solucionar problema del salir de la div y se desaparece la info
       $code  ="<div id='carta_".$c->getId()."' class='carta carta_".$c->getTipo()."' onmouseover='seleccionCarta(".$c->getId().")'>";//envia la id (de la div)
 
-      $code .="<p class='fuente_carta nombre_carta'>".$c->getNombre()."</p>";
+      $code .="<p class='fuente_carta nombre_carta'>".$c->getTipo()." ".$c->getNombre()."</p>";
       $code .="<img class='carta_img' src='".$c->getImagen()."'>";
       $code .="<img class='carta_img_clase' src='img/icons/".$c->getClase().".png'>";
 
       //echo "<script>alert('".$c->getCostoMana()."')</script>";
-      if ($c->getTipo() != 'ambiente')
+      switch ($c->getTipo())
       {
-        $code .= "<p class='fuente_carta info_oculta' id='inf_".$c->getId()."'>".$c->getTipo()."$".$c->getClase()."$".$c->getDescripcion()."$".$c->getCostoMana()."</p>";
-        $code .= "<p class='fuente_carta costo_mana'>".$c->getCostoMana()."</p>";
-        $code .= "<p class='fuente_carta info_carta'>".$c->getAtaque()."/".$c->getDefensa()."</p>";
-      }
-      else
+        case 'hechizo':
+          $code .= "<p class='fuente_carta info_carta'>".$c->getDuracion()." turnos";
+        case 'criatura':
+        case 'poder':
+          $code .= "<p class='fuente_carta info_oculta' id='inf_".$c->getId()."'>".$c->getTipo()."$".$c->getClase()."$".$c->getDescripcion()."$".$c->getCostoMana()."</p>";
+          $code .= "<p class='fuente_carta costo_mana'>".$c->getCostoMana()."</p>";
+        break;
+        case 'ambiente':
+          $code .= "<p class='fuente_carta info_oculta' id='inf_".$c->getId()."'>".$c->getTipo()."$".$c->getClase()."$".$c->getDescripcion()."$0</p>";
+          $code .= "<p class='fuente_carta costo_mana'>0</p>";
+          break;
+        }
+
+      //caso particular en poder que tiene duracion como attb
+      if ($c->getTipo() == 'criatura')
       {
-        $code .= "<p class='fuente_carta info_oculta' id='inf_".$c->getId()."'>".$c->getTipo()."$".$c->getClase()."$".$c->getDescripcion()."$0</p>";
-        $code .= "<p class='fuente_carta costo_mana'>0</p>";
-        $code .= "<p class='fuente_carta info_carta'>+ ".$c->getAtaque()." / + ".$c->getDefensa()."</p>";
+          $code .= "<p class='fuente_carta info_carta'>+ ".$c->getAtaque()." / + ".$c->getDefensa()."</p>";
       }
 
       $code .="</div>";
